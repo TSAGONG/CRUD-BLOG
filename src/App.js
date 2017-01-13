@@ -1,19 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Match } from 'react-router';
+//import axios from 'axios';
+import Create from './components/Create';
+import Digest from './components/Digest';
+//import Edit from './components/Edit';
+import Home from './components/Home';
+import View from './components/View';
+import Header from './components/Header';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      title: '',
+      post: ''
+  }
+}
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+            <div className="main">
+              <Match exactly pattern="/" component={Home} />
+              <Match exactly pattern="/create" component={Create} />
+              <Match exactly pattern="/view" component={View} />
+              <Match exactly pattern="/digest" component={Digest} />
+            </div>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      </BrowserRouter>
     );
   }
 }
