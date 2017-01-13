@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Match } from 'react-router';
-//import axios from 'axios';
+import axios from 'axios';
 import Create from './components/Create';
 import Digest from './components/Digest';
 //import Edit from './components/Edit';
@@ -14,8 +14,25 @@ class App extends Component {
     super();
     this.state = {
       title: '',
-      post: ''
-  }
+      post: '',
+      postList: []
+  };
+}
+
+componentDidMount(){
+  this.getRequest();
+}
+
+getRequest(){
+  const url= 'https://crud-1b909.firebaseio.com/.json';
+  axios.get(url)
+
+  .then((response) => {
+    console.log(response)
+  })
+  .catch((error) => {
+    //console.log(error)
+  })
 }
 
   render() {

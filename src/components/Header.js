@@ -11,7 +11,7 @@ const Header = () => (
           activeOnlyWhenExact
           activeClassName="active"
         >
-            Home
+          Home
           </Link>
         </li>
         <li>
@@ -20,7 +20,7 @@ const Header = () => (
           activeOnlyWhenExact
           activeClassName="active"
         >
-            Create
+          Create
           </Link>
         </li>
         <li>
@@ -29,7 +29,7 @@ const Header = () => (
           activeOnlyWhenExact
           activeClassName="active"
         >
-            View
+          View
           </Link>
         </li>
         <li>
@@ -38,7 +38,7 @@ const Header = () => (
           activeOnlyWhenExact
           activeClassName="active"
         >
-            Digest
+          Digest
           </Link>
         </li>
       </ul>
