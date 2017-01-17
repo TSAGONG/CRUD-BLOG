@@ -1,30 +1,43 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Match } from 'react-router';
 import axios from 'axios';
 import Create from './components/Create';
-import Digest from './components/Digest';
-//import Edit from './components/Edit';
-import Home from './components/Home';
-import View from './components/View';
-import Header from './components/Header';
-import './App.css';
+//import View from './components/View';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       title: '',
-      post: '',
-      postList: []
-  };
-}
+      desc: ''
+  }
 
-componentDidMount(){
-  this.getRequest();
-}
+  this.titleChange = this.titleChange.bind(this);
+  this.descChange = this.descChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
+  this.postRequest = this.postRequest.bind(this);
+  }
 
-getRequest(){
-  const url= 'https://crud-1b909.firebaseio.com/.json';
+  componentDidMount() {
+     this.getRequest();
+   }
+
+/*  getRequest() {
+    axios({
+      method :"get",
+      url: "https://crud-1b909.firebaseio.com/items/.json",
+      //baseURL: "https://crud-1b909.firebaseio.com/",
+
+    })
+    .then((response) => {
+      //console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }*/
+
+  getRequest(){
+  const url= 'https://crud-1b909.firebaseio.com/items/.json';
   axios.get(url)
 
   .then((response) => {
@@ -35,21 +48,75 @@ getRequest(){
   })
 }
 
+  postRequest() {
+    const url= 'https://crud-1b909.firebaseio.com/items.json';
+    axios.post(url, {
+      title: this.state.title,
+      desc: this.state.desc,
+    })
+    .then(() => {
+      this.getRequest();
+
+      // clears input so that state are empty strings
+      // this.setState({
+      //   title: '',
+      //   desc: ''
+      // })
+
+    })
+    .catch((error) => {
+      //console.log(error)
+    })
+
+    // axios({
+    //   method :"post",
+    //   url: "https://crud-1b909.firebaseio.com/items/.json",
+    //   //baseURL: "https://crud-1b909.firebaseio.com/",
+    //   data: newData
+    // })
+    // .then((response) => {
+    //   this.getRequest();
+    //   //console.log(response);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // })
+
+
+}
+
+   titleChange(e) {
+     this.setState({
+       title: e.target.value,
+       });
+   }
+
+   descChange(e) {
+     this.setState({
+       desc: e.target.value,
+       });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.postRequest();
+  }
+
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <Header />
-            <div className="main">
-              <Match exactly pattern="/" component={Home} />
-              <Match exactly pattern="/create" component={Create} />
-              <Match exactly pattern="/view" component={View} />
-              <Match exactly pattern="/digest" component={Digest} />
-            </div>
-        </div>
-      </BrowserRouter>
+      <div className="App">
+        <h1>Blog</h1>
+        <h3>What's on your mind?</h3>
+        <Create
+          title={this.props.title}
+          desc={this.props.desc}
+          //inputValue={this.state.input}
+          titleChange={this.titleChange}
+          descChange={this.descChange}
+          handleSubmit={this.handleSubmit}
+        />
+      </div>
     );
   }
 }
-
 export default App;
