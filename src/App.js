@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Create from './components/Create';
-//import View from './components/View';
+import View from './components/View';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       title: '',
-      desc: ''
+      desc: '',
+      views: []
   }
 
   this.titleChange = this.titleChange.bind(this);
@@ -41,8 +42,27 @@ class App extends Component {
   axios.get(url)
 
   .then((response) => {
-    console.log(response)
-  })
+    console.log(response);
+
+    const data = response.data;
+
+    let views = [];
+
+    if (data) {
+      views = Object.keys(data).map((id) => {
+        const view = data[id];
+
+        console.log(id)
+        return {
+          postTitle: view.title,
+          postDesc: view.desc
+        };
+      });
+    }
+      views.reverse();
+      this.setState ({ views })
+     })
+
   .catch((error) => {
     //console.log(error)
   })
@@ -56,7 +76,10 @@ class App extends Component {
     })
     .then(() => {
       this.getRequest();
-
+        this.setState({
+          title: '',
+          desc: ''
+        })
       // clears input so that state are empty strings
       // this.setState({
       //   title: '',
@@ -114,6 +137,9 @@ class App extends Component {
           titleChange={this.titleChange}
           descChange={this.descChange}
           handleSubmit={this.handleSubmit}
+        />
+        <View
+          views={this.state.views}
         />
       </div>
     );

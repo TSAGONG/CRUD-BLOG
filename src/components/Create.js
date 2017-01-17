@@ -13,7 +13,6 @@ class Create extends Component {
 
     return (
       <form onSubmit={this.props.handleSubmit}>
-    {/*() => {this.props.handleSubmit(this.title.value, this.desc.value)}}>*/}
         <input
           type="text"
           placeholder="title"

@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
 
-class TweedrFeed extends Component {
+const propTypes = {
+  views: React.PropTypes.array.isRequired
+};
+
+class View extends Component {
 
 render() {
 
-let tweedList = this.props.tweeds.map((tweed, i) => {
+let viewList = this.props.views.map((view, i) => {
+  console.log(view)
   return (
-    <li key={i}>{tweed.post}
-      <button>E</button>
-      <button>{/* onClick{() => this.props.deleteTweed}*/}X</button>
 
-    </li>
+    <li key={i}>{view.postTitle} {view.postDesc}</li>
       );
     });
     return (
       <ul>
-      {tweedList}
+        {viewList}
       </ul>
     );
   }
 }
+/*
+<h2>{view.postTitle}</h2>
+<p>{view.post}</p>*/
 
+View.propTypes = propTypes;
 
-const propTypes = {
-  tweeds: React.PropTypes.array.isRequired
-/*  deleteTweed: React.PropTypes.func.isRequired
-*/};
-
-TweedrFeed.propTypes = propTypes;
-
-export default TweedrFeed;
+export default View;
