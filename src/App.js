@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Create from './components/Create';
 import View from './components/View';
+import  './App.css';
 
 class App extends Component {
   constructor() {
@@ -16,44 +17,28 @@ class App extends Component {
   this.descChange = this.descChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
   this.postRequest = this.postRequest.bind(this);
+  this.deleteRequest = this.deleteRequest.bind(this);
   }
 
   componentDidMount() {
      this.getRequest();
    }
 
-/*  getRequest() {
-    axios({
-      method :"get",
-      url: "https://crud-1b909.firebaseio.com/items/.json",
-      //baseURL: "https://crud-1b909.firebaseio.com/",
-
-    })
-    .then((response) => {
-      //console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }*/
-
   getRequest(){
   const url= 'https://crud-1b909.firebaseio.com/items/.json';
   axios.get(url)
 
   .then((response) => {
-    console.log(response);
-
+    //console.log(response);
     const data = response.data;
-
     let views = [];
 
     if (data) {
       views = Object.keys(data).map((id) => {
         const view = data[id];
-
-        console.log(id)
+        //console.log(id)
         return {
+          id: id,
           postTitle: view.title,
           postDesc: view.desc
         };
@@ -85,39 +70,33 @@ class App extends Component {
       //   title: '',
       //   desc: ''
       // })
-
     })
     .catch((error) => {
       //console.log(error)
     })
+  }
 
-    // axios({
-    //   method :"post",
-    //   url: "https://crud-1b909.firebaseio.com/items/.json",
-    //   //baseURL: "https://crud-1b909.firebaseio.com/",
-    //   data: newData
-    // })
-    // .then((response) => {
-    //   this.getRequest();
-    //   //console.log(response);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // })
-
+deleteRequest(view) {
+    const url= `https://crud-1b909.firebaseio.com/items/${view.id}.json`;
+    axios.delete(url)
+    .then((response) => {
+      this.getRequest();
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 
 }
-
-   titleChange(e) {
-     this.setState({
-       title: e.target.value,
-       });
+  titleChange(e) {
+    this.setState({
+      title: e.target.value,
+    });
    }
 
-   descChange(e) {
-     this.setState({
-       desc: e.target.value,
-       });
+  descChange(e) {
+    this.setState({
+      desc: e.target.value,
+    });
   }
 
   handleSubmit(e) {
@@ -128,8 +107,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Blog</h1>
-        <h3>What's on your mind?</h3>
+        <h1 className="title">Blog</h1>
+        <h6 className="subTitle">What's on your mind?</h6>
         <Create
           title={this.props.title}
           desc={this.props.desc}
@@ -140,6 +119,7 @@ class App extends Component {
         />
         <View
           views={this.state.views}
+          deleteRequest={this.deleteRequest}
         />
       </div>
     );

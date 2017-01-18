@@ -1,0 +1,25 @@
+.title, .subTitle {
+  margin-left: 20px;
+}
+
+.inputTitle{
+  display: flex;
+  align-self: left;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.inputText{
+  display: flex;
+  margin-left: 20px;
+}
+
+#postButton {
+  display: flex;
+  margin-top: 10px;
+  align-items: left;
+  margin-left: 20px;
+}
+
+
