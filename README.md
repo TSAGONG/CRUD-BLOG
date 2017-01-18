@@ -1,3 +1,35 @@
+ ##Technologies Used:
+
+ HTML/CSS
+ React
+ Bootstrap
+ Firebase
+
+
+##Strategy
+
+The first approach I took coming into to this project was to wireframe a mockup
+on Balsamiq. As well as creating a Trello Board to reflect my user stories
+and developer tasks. 
+
+After the planning, my plan of attack was to call a get request to make sure 
+that I first have access to my data. After that, I made sure to 
+first call a get request so I can set state and get that data to render on firebase. 
+
+Thirdly, I wanted to retrieve the posted data from firebase so I could render that on 
+the page. 
+
+Additionaly, I added an edit and a delete button so I can call specific axios method 
+to get those buttons to work. 
+
+
+
+####initial wireframe
+![wireframe](./img/mockup.jpg)
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

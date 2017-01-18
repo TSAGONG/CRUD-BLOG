@@ -18,6 +18,7 @@ class App extends Component {
   this.handleSubmit = this.handleSubmit.bind(this);
   this.postRequest = this.postRequest.bind(this);
   this.deleteRequest = this.deleteRequest.bind(this);
+  this.editRequest = this.editRequest.bind(this);
   }
 
   componentDidMount() {
@@ -48,10 +49,10 @@ class App extends Component {
       this.setState ({ views })
      })
 
-  .catch((error) => {
+    .catch((error) => {
     //console.log(error)
-  })
-}
+    })
+  }
 
   postRequest() {
     const url= 'https://crud-1b909.firebaseio.com/items.json';
@@ -85,8 +86,31 @@ deleteRequest(view) {
     .catch((error) => {
       console.log(error)
     })
-
 }
+
+editMode(){
+    this.setState({ edit: true })
+  }
+
+
+
+editRequest(view) {
+  console.log(view)
+    const url= `https://crud-1b909.firebaseio.com/items/${view.id}.json`;
+    axios.patch(url, {
+      title: view.postTitle,
+      desc: view.postDesc,
+    })
+    .then((response) => {
+      this.getRequest();
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
+
+
+
   titleChange(e) {
     this.setState({
       title: e.target.value,
@@ -120,9 +144,11 @@ deleteRequest(view) {
         <View
           views={this.state.views}
           deleteRequest={this.deleteRequest}
+          editRequest={this.editRequest}
         />
       </div>
     );
   }
 }
+
 export default App;

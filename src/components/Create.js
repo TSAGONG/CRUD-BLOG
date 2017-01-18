@@ -12,26 +12,28 @@ class Create extends Component {
   render() {
 
     return (
-      <form onSubmit={this.props.handleSubmit}>
+      <form
+        className= "form"
+        onSubmit={this.props.handleSubmit}>
+
         <input
           className="inputTitle"
           type="text"
-
           placeholder="title"
           title={this.props.title}
           onChange={this.props.titleChange}
-          //ref={(input) => { this.props.title = input; }}
         />
+
         <textarea
           className="inputText"
           rows="15"
-          cols="60"
+          cols="40"
           type="text"
           placeholder="your thoughts"
           value={this.props.desc}
           onChange={this.props.descChange}
-          //ref={(input) => { this.props.description = input; }}
         />
+
         <input
           id="postButton"
           type="submit"
@@ -42,6 +44,7 @@ class Create extends Component {
     );
   }
 }
+
 
 Create.propTypes = propTypes;
 

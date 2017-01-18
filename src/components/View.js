@@ -13,24 +13,31 @@ let viewList = this.props.views.map((view, i) => {
   return (
 
     <li key={i}>
-      <h6>{view.postTitle}</h6><br/>
+
+      <h5>{view.postTitle}</h5><br/>
       <p>{view.postDesc}</p>
+
       <button
-        className="btn btn-primary btn-xs">Edit</button>
+        className="btn btn-primary btn-xs active"
+        onClick={()=> this.props.editRequest(view)}
+        >Edit</button>
+
       <button
-        className="btn btn-primary btn-xs"
+        className="btn btn-primary btn-xs active"
         onClick={()=> this.props.deleteRequest(view)}>Delete</button>
+
     </li>
-      );
-    });
-    return (
-       <div className="new-todo-box pb-2">
-        <ul>
-          {viewList}
-        </ul>
-      </div>
-    );
-  }
+  );
+});
+
+  return (
+    <div className="renderedInfo">
+      <ul>
+        {viewList}
+      </ul>
+    </div>
+  );
+}
 }
 
 
