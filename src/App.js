@@ -4,6 +4,7 @@ import Create from './components/Create';
 import View from './components/View';
 import  './App.css';
 
+
 class App extends Component {
   constructor() {
     super();
@@ -131,7 +132,7 @@ editRequest(view) {
   render() {
     return (
       <div className="App">
-        <h1 className="title">Blog</h1>
+        <h1 className="title">B L O G:</h1>
         <h6 className="subTitle">What's on your mind?</h6>
         <Create
           title={this.props.title}

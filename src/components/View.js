@@ -18,12 +18,12 @@ let viewList = this.props.views.map((view, i) => {
       <p>{view.postDesc}</p>
 
       <button
-        className="btn btn-primary btn-xs active"
+        className="btn btn-primary xs"
         onClick={()=> this.props.editRequest(view)}
         >Edit</button>
 
       <button
-        className="btn btn-primary btn-xs active"
+        className="btn btn-primary xs"
         onClick={()=> this.props.deleteRequest(view)}>Delete</button>
 
     </li>
@@ -32,7 +32,7 @@ let viewList = this.props.views.map((view, i) => {
 
   return (
     <div className="renderedInfo">
-      <ul>
+      <ul className="viewList">
         {viewList}
       </ul>
     </div>
