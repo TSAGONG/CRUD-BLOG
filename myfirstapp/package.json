@@ -1,0 +1,17 @@
+{
+  "name": "myfirstapp",
+  "version": "1.0.0",
+  "description": "my first app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tenzin, kevin, jason",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^4.4.0",
+    "jquery": "^3.1.1",
+    "lodash": "^4.17.2",
+    "underscore": "^1.8.3"
+  }
+}
