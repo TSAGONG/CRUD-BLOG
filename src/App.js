@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Create from './components/Create';
 import View from './components/View';
+import Home from './components/Home';
+import NotFound from './components/NotFound';
 import  './App.css';
 
 
@@ -131,23 +134,53 @@ editRequest(view) {
 
   render() {
     return (
-      <div className="App">
-        <h1 className="title">B L O G:</h1>
-        <h6 className="subTitle">What's on your mind?</h6>
-        <Create
-          title={this.props.title}
-          desc={this.props.desc}
-          //inputValue={this.state.input}
-          titleChange={this.titleChange}
-          descChange={this.descChange}
-          handleSubmit={this.handleSubmit}
-        />
-        <View
-          views={this.state.views}
-          deleteRequest={this.deleteRequest}
-          editRequest={this.editRequest}
-        />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <div className="DIARY">
+            <h2>Diary</h2>
+            <ul className = 'nav'>
+              <li>
+                <Link to="/" class="btn btn-default">Home</Link>
+              </li>
+              <li>
+                <Link to="/view" >View</Link>
+              </li>
+              <li>
+                <Link to="/create">Write</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="main">
+            <Switch>
+              <Route exact path="/" component={Home}
+                    render={() => <Home
+                                views={this.state.views}
+                                deleteRequest={this.deleteRequest}
+                                editRequest={this.editRequest}
+                              />}
+              />
+              <Route exact path="/view"
+                render={() => <View
+                                views={this.state.views}
+                                deleteRequest={this.deleteRequest}
+                                editRequest={this.editRequest}
+                              />}
+              />
+              <Route
+                exact path="/create"
+                render={() => <Create
+                                title={this.props.title}
+                                desc={this.props.desc}
+                                titleChange={this.titleChange}
+                                descChange={this.descChange}
+                                handleSubmit={this.handleSubmit}
+                              />}
+              />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
+        </div>
+      </BrowserRouter>
     );
   }
 }

@@ -5,7 +5,7 @@ const propTypes = {
   desc: React.PropTypes.string,
   // titleChange: React.PropTypes.func.isRequired,
   // descChange: React.PropTypes.func.isRequired,
-  handleSubmit: React.PropTypes.func.isRequired
+  //handleSubmit: React.PropTypes.func.isRequired
 };
 
 class Create extends Component {
