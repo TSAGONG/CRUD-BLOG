@@ -137,7 +137,6 @@ editRequest(view) {
       <BrowserRouter>
         <div className="App">
           <div className="DIARY">
-            <h2>Diary</h2>
             <ul className = 'nav'>
               <li>
                 <Link to="/" class="btn btn-default">Home</Link>
